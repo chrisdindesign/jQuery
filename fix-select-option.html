@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Ajax</title>
+  <style type="text/css">
+   .sep {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px dashed #ccc;    
+  }
+  #longselect, #longselect option {
+    width: 200px;
+  }
+
+  #longselect, #longselect option { 
+    width: 200px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow:ellipsis;
+    /*-webkit-appearance: none;*/
+  }
+
+</style>
+<script src="../../jquery.1.8.3.js"></script>
+
+</head>
+<body>
+
+  <ol id="list">
+    <li>list of item.</li>
+    <li>list of item.</li>
+  </ol>
+
+  <a href="javascript:void(0);" onclick="testApend()">Append</a>
+
+  <button id="btnAppend">Append</button>
+  <button id="btnPrep">Prepend</button>
+
+  <div id = "hello" ></div> 
+  <script type = "text/javascript" > 
+    var t = "Christopher Din",
+    s = "blue";
+    $ ( "#hello" ). text (t). css ( "color" , s );
+
+    //
+    function testApend() {
+      $("#list").append("<li>Append</li>");
+    }
+
+    function testPrepend() {
+      $("#list").prepend("<li>Prepend</li>");
+    }
+
+    function button(buttonId, hitfunction) {
+      $(buttonId).click(function() {
+        hitfunction();
+      });
+    }
+
+    button("#btnAppend",testApend);
+    button("#btnPrep",testPrepend);
+    
+  </script>
+
+
+  <div class="sep"></div>
+
+  <div> 
+    <p id="textA">This is some text inside a div element.</p>
+  </div>
+  <input type="text" placeholder="Enter some text" id="txt" size="30" /><br>
+
+  <div class="sep"></div>
+
+  <p>Dropdown for long text</p>
+
+  <select id="longselect" title="Please Select">
+    <option>please select</option>
+    <option>testApend</option>
+    <option>This is some text inside a div element.</option>
+    <option>121356547878878465354534AJDJKAJKLDJAKDJKLAKLDJKAJKDJAKLDJKLJDJAKjjjjjj</option>
+  </select>
+  <!-- <a href="javascript:void(0)">Change Text</a> -->
+
+
+  
+  
+
+  <script> 
+    (function( $ ){
+
+      function changeTitle(thisIs) {
+        var x = $(thisIs).get(0).text;
+        console.log(x.length);
+        $('#longselect').attr("title", x);
+      }
+
+      $('#longselect option').on('change', function() {
+        changeTitle(this);
+      })
+
+      $('#longselect option').on('mouseover', function() {
+        changeTitle(this);
+      })
+
+
+    //changeTitle('#longselect option');
+
+
+      //
+
+      function changeText() { 
+        $("#textA").text($("#txt").val());
+        console.log($("#textA").text()); 
+      }
+
+
+      $('#txt').on("keyup", function() {
+        changeText();
+      });
+
+    })( jQuery );
+
+
+  </script>
+
+
+</body>
+</html> 
